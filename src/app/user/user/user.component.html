@@ -1,0 +1,39 @@
+<div class="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-md">
+  <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">User List</h2>
+
+  <form (submit)="addUser()" class="flex flex-col md:flex-row gap-4 mb-6">
+    <input [(ngModel)]="newUser.name"  name="name"
+      placeholder="Name" required
+      class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <input
+      [(ngModel)]="newUser.email"  name="email" placeholder="Email"
+      type="email" required
+      class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button  type="submit"
+      class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+    > Add User </button>
+  </form>
+
+  <ul class="space-y-4">
+    <li *ngFor="let user of users"
+      class="flex flex-col md:flex-row items-center gap-4 p-4 border border-gray-200 rounded-md shadow-sm"
+    >
+      <input [(ngModel)]="user.name"
+        class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <input [(ngModel)]="user.email"
+        type="email" class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <button (click)="updateUser(user)"
+       class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Update</button>
+      <button (click)="deleteUser(user.id!)"
+        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"> Delete </button>
+    </li>
+  </ul>
+</div>
+<app-toast [message]="toastMessage"></app-toast>
+
+
+
